@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>QR Code Scanner</title>
-  <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+    <!-- Include the QR code library -->
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
 </head>
 <body>
-  <div id="qr-reader" style="width:500px;"></div>
-  <script>
-    const qrCodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
-    qrCodeScanner.render(onScanSuccess, onScanError);
+    <div id="qr-reader" style="width:500px;"></div>
+    <div id="qr-result">Scanned result will be shown here</div>
 
-    function onScanSuccess(decodedText, decodedResult) {
-      console.log(`Scanned result: ${decodedText}`);
-    }
+    <script>
+        const qrCodeScanner = new Html5QrcodeScanner(
+            "qr-reader", 
+            { fps: 10, qrbox: 250 }
+        );
 
-    function onScanError(errorMessage) {
-      console.error(errorMessage);
-    }
-  </script>
+        qrCodeScanner.render(onScanSuccess, onScanError);
+
+        function onScanSuccess(decodedText, decodedResult) {
+            console.log(`Scanned result: ${decodedText}`);
+            document.getElementById("qr-result").innerText = `Scanned result: ${decodedText}`;
+        }
+
+        function onScanError(errorMessage) {
+            console.error(errorMessage);
+        }
+    </script>
 </body>
 </html>
+
