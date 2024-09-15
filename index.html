@@ -10,9 +10,15 @@
   <div id="qr-reader" style="width:500px;"></div>
   <script>
     const qrCodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
-    qrCodeScanner.render((decodedText, decodedResult) => {
+    qrCodeScanner.render(onScanSuccess, onScanError);
+
+    function onScanSuccess(decodedText, decodedResult) {
       console.log(`Scanned result: ${decodedText}`);
-    });
+    }
+
+    function onScanError(errorMessage) {
+      console.error(errorMessage);
+    }
   </script>
 </body>
 </html>
