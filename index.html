@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Scanner</title>
+  <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+</head>
+<body>
+  <div id="qr-reader" style="width:500px;"></div>
+  <script>
+    const qrCodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
+    qrCodeScanner.render((decodedText, decodedResult) => {
+      console.log(`Scanned result: ${decodedText}`);
+    });
+  </script>
+</body>
+</html>
